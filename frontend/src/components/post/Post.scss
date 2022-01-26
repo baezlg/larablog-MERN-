@@ -1,0 +1,47 @@
+.post {
+  &__img {
+    position: relative;
+    width: 100%;
+    height: 20rem;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__title {
+    font-size: 1.7rem;
+    padding: 1rem 0;
+  }
+  &__desc {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+
+    &--short {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+  &__time {
+    font-size: 8px;
+    color: gray;
+    margin-bottom: 1rem;
+  }
+  &__cat {
+    display: flex;
+    span {
+      background: #000;
+      color: white;
+      margin-right: 4px;
+      padding: 0.5rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+  }
+}

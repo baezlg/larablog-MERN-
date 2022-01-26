@@ -1,0 +1,33 @@
+.showcase {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  overflow: hidden;
+  color: var(--white);
+  &__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 152, 218, 0.5);
+    z-index: -1;
+  }
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
