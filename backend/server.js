@@ -1,3 +1,9 @@
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -18,6 +24,17 @@ app.use("/api/categories", categoryRouter);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
+}
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("Api running");
+  });
 }
 
 const PORT = process.env.PORT || 8080;
