@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import postController from "./../controllers/postController.js";
-import commentController from "./../controllers/commentController.js";
+import postController from "../controllers/postController.js";
+import commentController from "../../controllers/commentController.js.js.js.js";
 
 router.get("/popular-post", commentController.popularPost);
 router.get("/categories-count", postController.getCategoriesCount);
