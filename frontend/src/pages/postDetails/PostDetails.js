@@ -37,7 +37,11 @@ const PostDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addCommentAction(post?._id, { name, message }));
+    if (name === "") {
+      dispatch(addCommentAction(post?._id, { message }));
+    } else {
+      dispatch(addCommentAction(post?._id, { name, message }));
+    }
     setName(" ");
     setMessage(" ");
   };
