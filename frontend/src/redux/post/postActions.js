@@ -1,5 +1,6 @@
 import axios from "axios";
 import { types } from "./../types";
+import { BASE_URL } from "../utils";
 
 export const listPosts =
   (newPosts = false, page) =>
@@ -8,9 +9,9 @@ export const listPosts =
       dispatch({ type: types.POST_LIST_REQUEST });
       let res;
       if (newPosts) {
-        res = await axios.get(`http://localhost:8080/api/posts?new=true`);
+        res = await axios.get(`${BASE_URL}api/posts?new=true`);
       } else {
-        res = await axios.get(`http://localhost:8080/api/posts?page=${page}`);
+        res = await axios.get(`${BASE_URL}api/posts?page=${page}`);
         console.log(res);
       }
 
@@ -32,7 +33,7 @@ export const getPost = (slug) => async (dispatch) => {
   try {
     dispatch({ type: types.POST_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:8080/api/posts/${slug}`);
+    const { data } = await axios.get(`${BASE_URL}api/posts/${slug}`);
 
     dispatch({
       type: types.POST_SUCCESS,
@@ -53,7 +54,7 @@ export const listPopularPost = () => async (dispatch) => {
   try {
     dispatch({ type: types.POPULAR_POSTS_REQUEST });
 
-    const res = await axios.get(`http://localhost:8080/api/posts/popular-post`);
+    const res = await axios.get(`${BASE_URL}api/posts/popular-post`);
 
     dispatch({
       type: types.POPULAR_POSTS_SUCCESS,
@@ -74,9 +75,7 @@ export const listCatCount = () => async (dispatch) => {
   try {
     dispatch({ type: types.POST_CAT_COUNT_REQUEST });
 
-    const res = await axios.get(
-      `http://localhost:8080/api/posts/categories-count`
-    );
+    const res = await axios.get(`${BASE_URL}api/posts/categories-count`);
 
     dispatch({
       type: types.POST_CAT_COUNT_SUCCESS,
@@ -96,7 +95,7 @@ export const listCat = () => async (dispatch) => {
   try {
     dispatch({ type: types.POST_CAT_REQUEST });
 
-    const res = await axios.get(`http://localhost:8080/api/categories`);
+    const res = await axios.get(`${BASE_URL}api/categories`);
 
     dispatch({
       type: types.POST_CAT_SUCCESS,
@@ -117,9 +116,7 @@ export const listComment = (id) => async (dispatch) => {
     dispatch({ type: types.COMMENT_LIST_REQUEST });
 
     if (id) {
-      const res = await axios.get(
-        `http://localhost:8080/api/posts/${id}/comments`
-      );
+      const res = await axios.get(`${BASE_URL}api/posts/${id}/comments`);
       dispatch({
         type: types.COMMENT_LIST_SUCCESS,
         payload: res.data,
@@ -140,10 +137,7 @@ export const addCommentAction = (id, body) => async (dispatch) => {
     dispatch({ type: types.ADD_COMMENT_REQUEST });
 
     if (id) {
-      const res = await axios.post(
-        `http://localhost:8080/api/posts/${id}/comments`,
-        body
-      );
+      const res = await axios.post(`${BASE_URL}api/posts/${id}/comments`, body);
       dispatch({
         type: types.ADD_COMMENT_SUCCESS,
         payload: res.data,
